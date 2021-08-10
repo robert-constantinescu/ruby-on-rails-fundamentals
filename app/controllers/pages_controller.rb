@@ -4,4 +4,6 @@ class PagesController < ApplicationController
   # by convention, rails is going to expect a 'home.html.erb' template file
   def home; end
 
+  def about; end
+
 end

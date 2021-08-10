@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # this is telling rails to expect a 'home' method(or action) in the pages_controller.rb class
   root 'pages#home'
+
+  # this translates to a GET request to the ABOUT page
+  get 'about', to: 'pages#about'
 end
