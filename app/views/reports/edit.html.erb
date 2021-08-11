@@ -1,32 +1,6 @@
 <h1>Edit Report</h1>
 
-<% if @report.errors.any? %>
-  <h2> The following errors occurred</h2>
-  <ul>
-    <% @report.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with(model: @report) do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    The submit button will trigger the 'update' method from reports_controller.rb
-    <br>
-    <%= f.submit %>
-  </p>
-
-
-<% end %>
+<!-- here we reference the _form.html.erb partial file, that is in the same folder as the edit.html.erb-->
+<%= render 'form' %>
 
 <%= link_to 'Back', reports_path%>

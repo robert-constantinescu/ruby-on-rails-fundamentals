@@ -1,31 +1,5 @@
 <h1>Create a new report</h1>
 
-<% if @report.errors.any? %>
-  <h2> The following errors occurred</h2>
-  <ul>
-    <% @report.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with scope: :report, url: reports_path do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    The submit button will trigger the 'create' method from reports_controller.rb
-    <br>
-    <%= f.submit %>
-  </p>
-
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back', reports_path%>
