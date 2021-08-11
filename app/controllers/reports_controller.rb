@@ -34,4 +34,18 @@ class ReportsController < ApplicationController
     end
   end
 
+  def edit
+    @report = Report.find(params[:id])
+  end
+
+  def update
+    @report = Report.find(params[:id])
+    if @report.update(params.require(:report).permit(:title, :description))
+      flash[:notice] = 'Article was UPDATED successfully'
+      redirect_to report_path(@report)
+    else
+      render 'edit'
+    end
+  end
+
 end

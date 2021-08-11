@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # this 'resources' keyword will create all the routes you need for the 'reports'
   # adding the 'only' will create routes for what is in the square brackets
-  resources :reports, only: [:show, :index, :new, :create]
+  resources :reports, only: [:show, :index, :new, :create, :edit, :update]
 
   # this is telling rails to expect a 'home' method(or action) in the pages_controller.rb class
   root 'pages#home'
