@@ -10,4 +10,28 @@ class ReportsController < ApplicationController
   def index
     @reports = Report.all
   end
+
+  def new
+    # we need to initiate the @report variable when we load the 'new' view, because we check if there are any errors on @reports
+    # if @reports is not initiated, then it will be 'nil' and NilError will occur
+    @report = Report.new
+  end
+
+
+  def create
+    puts "create-params: #{params[:report]}"
+    # using the below syntax, we allow ruby to read the parameters from permit() method and assign them to the newly created object
+    # otherwise, due to security feature, the parameter will not be available for assignment
+    @report = Report.new(params.require(:report).permit(:title, :description))
+
+    if @report.save
+    # what rails will do here, is to extract the report id from the @report and then use it to form the path=/reports/:id
+    # redirect_to @report => will do the same redirection
+      flash[:notice] = 'Article was created successfully'
+      redirect_to report_path(@report)
+    else
+      render 'new' # if the save fails, render the 'new' template again
+    end
+  end
+
 end
