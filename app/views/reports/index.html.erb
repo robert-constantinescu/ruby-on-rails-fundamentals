@@ -14,7 +14,13 @@
     <tr>
       <td><%= report.title %></td>
       <td><%= report.description%></td>
-      <td><%= "Placeholder" %></td>
+      <td>
+        <%= link_to 'Show', report_path(report), method: :get %>
+<!--    link_to = set the label of the button
+        report_path(report) = set the url that this link will access
+        method => specifies the TYPE of request we want to execute. This case a DELETE request-->
+        <%= link_to 'Delete', report_path(report), method: :delete %>
+      </td>
     </tr>
     <% end %>
 
