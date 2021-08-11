@@ -1,0 +1,22 @@
+<h4>Index View</h4>
+<h1>Report List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody >
+    <% @reports.each do |report| %>
+    <tr>
+      <td><%= report.title %></td>
+      <td><%= report.description%></td>
+      <td><%= "Placeholder" %></td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>

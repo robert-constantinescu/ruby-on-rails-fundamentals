@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :articles
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  #this 'resources' keyword will create all the routes you need for the 'reports'
-  resources :reports
+  # this 'resources' keyword will create all the routes you need for the 'reports'
+  # adding the 'only' will create routes for show & index html's views
+  resources :reports, only: [:show, :index]
 
   # this is telling rails to expect a 'home' method(or action) in the pages_controller.rb class
   root 'pages#home'
