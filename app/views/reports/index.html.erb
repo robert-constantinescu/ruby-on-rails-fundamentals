@@ -4,6 +4,7 @@
 <table>
   <thead>
     <tr>
+      <th>Author</th>
       <th>Title</th>
       <th>Description</th>
       <th>Action</th>
@@ -12,8 +13,9 @@
   <tbody >
     <% @reports.each do |report| %>
     <tr>
+      <td><%= report.user.username if report.user %></td>
       <td><%= report.title %></td>
-      <td><%= report.description%></td>
+      <td><%= report.description %></td>
       <td>
         <%= link_to 'Edit', edit_report_path(report) %>
         <%= link_to 'Show', report_path(report), method: :get %>

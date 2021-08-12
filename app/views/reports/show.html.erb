@@ -7,6 +7,7 @@
 <p>
   <strong>&lt%= some ruby code %&gt</strong> => the extra '=' translates to : 'evaluate and display ruby code'
 </p>
+<p><strong>Author: </strong><%= @report.user.username if @report.user %></p>
 <p><strong>Title: </strong><%= @report.title %></p>
 <p><strong>Description: </strong><%= @report.description %></p>
 
