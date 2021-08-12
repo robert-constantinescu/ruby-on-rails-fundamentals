@@ -24,6 +24,7 @@ class ReportsController < ApplicationController
     puts "create-params: #{params[:report]}"
     # otherwise, due to security feature, the parameter will not be available for assignment
     @report = Report.new(whitelist_and_extract_report_params)
+    @report.user = User.first #temporily code to be able to save reports
 
     if @report.save
       flash[:notice] = 'Article was created successfully'
