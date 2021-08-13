@@ -24,9 +24,9 @@
   </p>
 
   <p>
-    The submit button will trigger the 'create' method from users_controller.rb
+    The submit button will trigger the 'create' or 'update'(it depends if you create a new user or update an old one) method from users_controller.rb
     <br>
-    <%= f.submit "Sign Up"%>
+    <%= f.submit(@user.new_record? ? "Sign Up" : "Update account")%>
   </p>
 
 
