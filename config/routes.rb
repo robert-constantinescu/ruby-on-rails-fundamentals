@@ -13,4 +13,7 @@ Rails.application.routes.draw do
 
   # this translates to a GET request to the ABOUT page
   get 'about', to: 'pages#about'
+
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
 end
