@@ -10,7 +10,9 @@
   <tbody >
   <% obj.each do |report| %>
     <tr>
-      <td><%= report.user.username if report.user %></td>
+      <% if report.user %>
+        <td><%= link_to report.user.username, user_path(report.user)%></td>
+      <% end %>
       <td><%= report.title %></td>
       <td><%= report.description %></td>
       <td>

@@ -8,6 +8,13 @@
 <% end %>
 
 <%= form_with(model: @report) do |f| %>
+  <% if @report.user %>
+    <p>
+      by <%= @report.user.username %>
+      <%= link_to gravatar_for(@report.user, size: 200), user_path(@report.user) %>
+    </p>
+  <% end %>
+
   <p>
     <%= f.label :title %>
     <%= f.text_field :title %>

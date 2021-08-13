@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(whitelist_and_extract_user_params)
       flash[:notice] = 'Account was successfully updated'
-      redirect_to reports_path
+      redirect_to user_path(@user)
     else
       render 'edit'
     end

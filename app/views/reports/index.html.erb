@@ -1,7 +1,16 @@
 <h4>Index View</h4>
 <h1>Report List</h1>
 
+<div class="flickr_pagination">
+  <%= will_paginate @reports, :container => false %>
+</div>
+
 <%= render 'report', obj: @reports %>
+
+
+<div class="flickr_pagination">
+  <%= will_paginate @reports, :container => false %>
+</div>
 
 <p>
   <%= link_to 'Create new report', new_report_path %>
