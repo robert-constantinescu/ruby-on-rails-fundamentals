@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, only[:show, :edit, :update]
+
 
   def show
-    @user = User.find(params[:id])
   end
 
   def index
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(whitelist_and_extract_user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "Successfully Signed Up #{@user.username}!  Welcome to the app! "
       redirect_to reports_path
     else
@@ -24,11 +26,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(whitelist_and_extract_user_params)
       flash[:notice] = 'Account was successfully updated'
       redirect_to user_path(@user)
@@ -43,5 +43,9 @@ class UsersController < ApplicationController
 
   def whitelist_and_extract_user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
