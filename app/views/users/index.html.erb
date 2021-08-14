@@ -17,8 +17,14 @@
             <p class="card-text"><%= pluralize(user.reports.count, "report") %></p>
 
             <%= link_to "View profile", user_path(user), class: "btn btn-outline-success" %>
-            <% if logged_in? && user == current_user %>
-              <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+            <% if logged_in?  %>
+              <% if user == current_user %>
+                <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+              <% end %>
+              <% if current_user.admin?  %>
+                byebug
+                <%= link_to "Delete User", user_path(user), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure you want to delete the USER and all it's ASSOCIATED REPORTS"} %>
+              <% end %>
             <% end %>
           </div>
           <div class="card-footer text-muted">

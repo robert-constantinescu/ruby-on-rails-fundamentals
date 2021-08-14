@@ -39,8 +39,7 @@ class ReportsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit;  end
 
   def update
     if @report.update(whitelist_and_extract_report_params)
@@ -70,7 +69,7 @@ class ReportsController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @report.user
+    if current_user != @report.user && !current_user.admin?
       flash[:alert] = 'You can only edit or delete own reports'
       redirect_to @report
     end
