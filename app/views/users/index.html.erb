@@ -17,9 +17,9 @@
             <p class="card-text"><%= pluralize(user.reports.count, "report") %></p>
 
             <%= link_to "View profile", user_path(user), class: "btn btn-outline-success" %>
-            <%# if logged_in? && (user == current_user || current_user.admin?) %>
+            <% if logged_in? && user == current_user %>
               <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
-            <%# end %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago </small>
@@ -29,4 +29,3 @@
     </div>
   <% end %>
 </div>
-

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def current_user
     # this is called memoization,
     #  ' ||= ' => is a common Ruby idiom: it assigns the value only if it is not already set.
-    @current_user ||= User.find[session[:user_id]] if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def logged_in?
