@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update]
 
 
-  def show
-  end
+  def show; end
 
   def index
     @users = User.all
@@ -25,8 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(whitelist_and_extract_user_params)
@@ -47,5 +47,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = 'You can only edit your own profile'
+      redirect_to @user
+    end
   end
 end

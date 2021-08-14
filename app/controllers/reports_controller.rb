@@ -2,7 +2,10 @@
 class ReportsController < ApplicationController
 
   # this says that before the action from square_brackets, execute the 'find_report_from_id' method
+  # The ordering here is important. They will be executed in sequence
   before_action :find_report_from_id, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
     puts "params URL--  : #{params}"
@@ -53,6 +56,8 @@ class ReportsController < ApplicationController
     redirect_to reports_path
   end
 
+
+
   private
 
   def find_report_from_id
@@ -62,6 +67,13 @@ class ReportsController < ApplicationController
   def whitelist_and_extract_report_params
     # using the below syntax, we allow ruby to read the parameters from permit() method and assign them to the newly created object
     params.require(:report).permit(:title, :description)
+  end
+
+  def require_same_user
+    if current_user != @report.user
+      flash[:alert] = 'You can only edit or delete own reports'
+      redirect_to @report
+    end
   end
 
 end
