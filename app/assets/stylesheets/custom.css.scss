@@ -1,5 +1,16 @@
-
 @import 'bootstrap/dist/css/bootstrap';
+
+.navbar {
+  background-color: white !important;
+}
+
+.nav-link {
+  color: black !important;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
 
 
 .flickr_pagination {
