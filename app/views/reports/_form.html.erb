@@ -6,30 +6,40 @@
     <% end %>
   </ul>
 <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: @report) do |f| %>
+        <div class="form-group row">
+          <%= f.label :title, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of Report" %>
+          </div>
+        </div>
 
-<%= form_with(model: @report) do |f| %>
-  <% if @report.user %>
-    <p>
-      by <%= @report.user.username %>
-      <%= link_to gravatar_for(@report.user, size: 200), user_path(@report.user) %>
-    </p>
-  <% end %>
+        <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description" %>
+          </div>
+        </div>
 
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
+        <div class="form-group row">
+          <%= f.label :category, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.collection_select(:category_ids, Category.all, :id, :name,
+                                    { prompt: "Make your selection from the list below (can be empty)"}, { multiple: true, size: 3, class: "custom-select shadow rounded" }) %>
+          </div>
+        </div>
 
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    The submit button will trigger the 'update' method from reports_controller.rb
-    <br>
-    <%= f.submit %>
-  </p>
-
-
-<% end %>
+        <div class="form-group row justify-content-center">
+          <p>
+            The submit button will trigger the 'update' method from reports_controller.rb
+            <br>
+            <%= f.submit class: "btn btn-outline-dark btn-dk" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

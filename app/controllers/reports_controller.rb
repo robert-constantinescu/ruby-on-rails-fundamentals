@@ -65,7 +65,7 @@ class ReportsController < ApplicationController
 
   def whitelist_and_extract_report_params
     # using the below syntax, we allow ruby to read the parameters from permit() method and assign them to the newly created object
-    params.require(:report).permit(:title, :description)
+    params.require(:report).permit(:title, :description, category_ids: [])
   end
 
   def require_same_user
