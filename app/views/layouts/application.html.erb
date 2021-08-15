@@ -6,13 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--    This stylesheet_link_tag is referencing to the app/assets/stylesheets/application.css file-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag "application", media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <!--    This javascript_pack_tag is referring to the app/assets/javascript/pack/application.js file-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column">
+  <body class="d-flex flex-columnk">
     <%= render 'layouts/navigation' %>
     <div id="page-content">
       <%= render 'layouts/messages' %>
