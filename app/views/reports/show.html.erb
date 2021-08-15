@@ -1,20 +1,32 @@
-<h1>Showing Reports!</h1>
+<h1>Showing Report!</h1>
 
+<h2 class="text-center mt-4"><%= @report.title %></h2>
 
-<p>
-  <strong>&lt% some ruby code %&gt</strong>  => this translates to : 'evaluate ruby code'
-</p>
-<p>
-  <strong>&lt%= some ruby code %&gt</strong> => the extra '=' translates to : 'evaluate and display ruby code'
-</p>
-<p><strong>Author: </strong><%= @report.user.username if @report.user %></p>
-<p><strong>Title: </strong><%= @report.title %></p>
-<p><strong>Description: </strong><%= @report.description %></p>
-
-<p>
-  <% if logged_in? && (current_user == @report.user || current_user.admin?) %>
-    <%= link_to 'Edit', edit_report_path(@report) %>  |
-    <%= link_to 'Delete', report_path(@report), method: :delete, data: { confirm: " Confirm Report deletion"} %>  |
-  <% end %>
-  <%= link_to 'Back', reports_path%>
-</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          by <%= @report.user.username if @report.user %>
+          <%= link_to gravatar_for(@report.user), user_path(@report.user) %>
+          <% if @report.categories.any? %>
+            <div class="mt-2">
+              <%= render @report.categories %>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@report.description) %></div>
+          <% if logged_in? && (@report.user == current_user || current_user.admin?) %>
+            <%= link_to "Edit", edit_report_path(@report), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", report_path(@report), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@report.created_at) %> ago,
+            edited <%= time_ago_in_words(@report.updated_at) %> ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

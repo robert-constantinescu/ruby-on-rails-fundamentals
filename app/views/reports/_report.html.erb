@@ -4,6 +4,7 @@
     <th>Author</th>
     <th>Title</th>
     <th>Description</th>
+    <th>Category</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -15,6 +16,13 @@
       <% end %>
       <td><%= report.title %></td>
       <td><%= report.description %></td>
+      <td>
+        <% if report.categories.any? %>
+          <div class="mt-2">
+            <%= render report.categories %>
+          </div>
+        <% end %>
+      </td>
       <td>
         <%= link_to 'Show', report_path(report), method: :get %>
         <% if logged_in? && ( report.user == current_user || current_user.admin? )%>
